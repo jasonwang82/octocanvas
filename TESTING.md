@@ -10,13 +10,15 @@ src/__tests__/
 │   ├── Button.test.tsx    # Button 组件测试 (22 个测试)
 │   ├── FormControls.test.tsx  # FormControls 组件测试 (43 个测试)
 │   └── Icon.test.tsx      # Icon 组件测试 (30 个测试)
-└── utils/                 # 工具函数测试
-    └── utilities.test.ts  # 工具函数测试 (53 个测试)
+├── utils/                 # 工具函数测试
+│   └── utilities.test.ts  # 工具函数测试 (53 个测试)
+└── config/                # 配置常量测试
+    └── constants.test.ts  # 配置常量测试 (41 个测试)
 ```
 
 ## 测试覆盖范围
 
-### UI 组件测试
+### UI 组件测试 (95 tests)
 
 #### Button Component (22 tests)
 - ✅ 渲染不同变体 (primary, secondary)
@@ -89,6 +91,30 @@ src/__tests__/
 - ✅ Fork 总数计算
 - ✅ 缺失数据处理
 
+### 配置常量测试 (41 tests)
+
+#### 主题配置 (8 tests)
+- ✅ 背景主题定义
+- ✅ 主题标签验证
+- ✅ 主题数量验证
+
+#### 头像滤镜选项 (3 tests)
+- ✅ 滤镜配置
+- ✅ 滤镜标签
+
+#### 稀有度等级定义 (18 tests)
+- ✅ 稀有度等级结构
+- ✅ 稀有度名称
+- ✅ 稀有度颜色 (hex 格式验证)
+- ✅ 稀有度渐变 (Tailwind 类验证)
+
+#### 编程语言颜色映射 (12 tests)
+- ✅ 语言颜色结构
+- ✅ 流行语言支持
+- ✅ 前端/系统/移动语言
+- ✅ 颜色值验证 (hex 格式)
+- ✅ 颜色可访问性
+
 ## 运行测试
 
 ### 运行所有测试
@@ -117,6 +143,7 @@ npm run test:coverage
 - **@testing-library/preact**: Preact 组件测试工具
 - **@testing-library/jest-dom**: DOM 匹配器
 - **happy-dom**: 轻量级 DOM 实现
+- **@vitest/coverage-v8**: 代码覆盖率工具
 
 ## 测试最佳实践
 
@@ -128,12 +155,13 @@ npm run test:coverage
 
 ## 测试统计
 
-- **总测试文件**: 4
-- **总测试用例**: 148
-- **通过率**: 100%
+- **总测试文件**: 5
+- **总测试用例**: 189
+- **通过率**: 100% ✅
 - **覆盖范围**:
-  - UI 组件: Button, FormControls, Icon
-  - 工具函数: 用户名处理、稀有度计算、数据处理
+  - UI 组件: Button, FormControls (Checkbox, TextInput, PrimerSelect), Icon
+  - 工具函数: 用户名处理、稀有度计算、数据处理、语言统计
+  - 配置常量: 主题、滤镜、稀有度、语言颜色、尺寸配置
 
 ## 持续集成
 
@@ -141,8 +169,14 @@ npm run test:coverage
 
 ```yaml
 # GitHub Actions 示例
+- name: Install dependencies
+  run: npm install
+  
 - name: Run tests
   run: npm run test:run
+  
+- name: Generate coverage
+  run: npm run test:coverage
 ```
 
 ## 贡献指南
@@ -154,3 +188,4 @@ npm run test:coverage
 3. 遵循现有测试的结构和风格
 4. 确保所有测试都通过再提交
 5. 保持高测试覆盖率
+6. 为每个测试编写清晰的描述
